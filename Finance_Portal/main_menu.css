@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding-left: 5vh;
+  padding-top: 20vh;
+  background: url('images/img3.jpg')no-repeat;
+  background-size: 100% 100%; /* Initial size */
+  user-select: none;
+}
+
+.card {
+  width: 600px;
+  height: fit-content;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border-radius: 40px;
+}
+
+.calendar-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+}
+
+.calendar-toolbar > .current-month {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF;
+}
+
+.calendar-toolbar > [class$="month-btn"] {
+  width: 40px;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  color: #19181a;
+  background: #f8f7fa;
+  border: none;
+  border-radius: 15px;
+}
+
+.weekdays,
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline: 18px;
+}
+.weekdays {
+  padding-top: 12px;
+}
+.calendar-days {
+  padding-bottom: 12px;
+}
+
+.weekday-name,
+[class$="-day"] {
+  width: 40px;
+  height: 40px;
+  color: #19181a;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.weekday-name {
+  color: #19181a;
+  font-weight: 700;
+}
+
+.current-day {
+  background-color: rgb(112, 71, 235);
+  color: #f8f7fa;
+  border-radius: 15px;
+  font-weight: 700;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.padding-day {
+  color: #a5a5a5;
+  user-select: none;
+}
+
+.calendar-toolbar > [class$="month-btn"]:hover,
+.month-day:hover,
+.btn:hover {
+  border-radius: 15px;
+  background-color: #f8f7fa;
+  color: rgb(112, 71, 235);
+  transition: 0.1s;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px 1.5px rgb(112, 71, 235);
+}
+
+.calendar-toolbar > [class$="month-btn"]:focus,
+.month-day:focus,
+.btn:focus {
+  border-radius: 15px;
+  background-color: rgb(112, 71, 235);
+  color: #f8f7fa;
+}
+
+.goto-buttons {
+  border-top: 1px solid #efefef;
+  padding-block: 18px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn {
+  background: #f8f7fa;
+  border: none;
+  border-radius: 15px;
+  padding: 11px 13px;
+  color: #19181a;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-right: 1px;
+  box-shadow: 0px 0px 0px #efefef;
+}
+
+.add-custom-input {
+  background: #f8f7fa;
+  border: none;
+  border-radius: 15px;
+  padding: 11px 13px;
+  color: #19181a;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-right: 1px;
+  box-shadow: 0px 0px 0px #efefef;
+}
+
+.add-custom-input:hover,
+.add-custom-input:focus {
+  border-radius: 15px;
+  background-color: rgb(112, 71, 235);
+  color: #f8f7fa;
+}
+
+
+.userinput{
+	font-family: "Quicksand", sans-serif;
+	color: #FFF;
+	font-weight: 600;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	max-height: 200px;
+    overflow-y: auto;
+}
+
+.userinput label{
+	border-radius: 1000px;
+	accent-color: #fff;
+	margin-right: 3px;
+}
+
+.userinput input{
+	font-family: "Quicksand", sans-serif;
+	color: black;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content horizontally */
+}
+
+
+.pie-chart {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    margin: 20px; /* Add margin for spacing */
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center items horizontally */
+    padding: 20px;
+}
+
+.pie-chart .text {
+    margin-bottom: 10px; /* Add margin below the text */
+}
+
+#pieYearDisplay{
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+
+
+.calendar-container .card .calendar .userinput .gross {
+	position: absolute;
+	top: 86px;
+	right: 200px;
+	bottom: 0;
+	color: #fff;
+}
+
+/* Adjust the layout of the parent container */
+.chart-container {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center items horizontally */
+    justify-items: center;
+}
+
+
+/* Styles for the netIncome element */
+.netIncome {
+    width: 550px; /* Same width as netIncome container */
+    height: 50px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.netIncome .netText {
+    margin-bottom: 10px;
+}
+
+.netIncome .netText label {
+    font-family: "Quicksand", sans-serif;
+    font-size: 43px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+
+/* Styles for the netIncome element */
+.netMonthly {
+    width: 550px; /* Same width as netIncome container */
+    height: 50px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    margin-left: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.netMonthly .monthText {
+    margin-bottom: 10px;
+}
+
+.netMonthly .monthText label {
+    font-family: "Quicksand", sans-serif;
+    font-size: 43px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+.enterIncome{
+    width: 550px; /* Same width as netIncome container */
+    height: 100px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    margin-left: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.enterIncome .enterText{
+  margin-bottom: 10px;
+}
+
+.enterIncome .enterText label{
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+.bargraph {
+  width: 550px; /* Same width as netIncome container */
+    height: 450px; /* Adjust height as needed */
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    margin-top: 20px;
+    border-radius: 40px;
+    padding: 20px;
+    text-align: center; /* Center text horizontally */
+    margin-left: 20px;
+}
+
+
+.bargraph .barText {
+    margin-bottom: 10px;
+    text-align: center; /* Center text horizontally */
+}
+
+#yearDisplay{
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center; /* Center text horizontally */
+}

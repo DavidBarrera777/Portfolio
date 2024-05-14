@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Finance Portal</title>
+	<link rel="stylesheet" href = "style.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style type="text/css">
+    .header {
+        font-family: "Quicksand", sans-serif;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 100px;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 32px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .navbar {
+        margin-left: auto; /* Aligns navbar to the right */
+    }
+
+    .navbar a {
+        position: relative;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+    }
+
+    .navbar a::before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #fff;
+        transition: .3s;
+    }
+
+    .navbar a:hover::before {
+        width: 100%;
+    }
+</style>
+<header class="header">
+  <a href="HomePage.html" class="logo">Finance Portal</a>
+
+  <nav class="navbar">
+    <a href="MAIN_MENU.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Help.html">Help</a>
+    <a href="register.html">Sign Up</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+
+
+
+
+<body>
+<div id ="error">
+	<div class="hero">
+		<div class="title">
+			<h1>FINANCE</h1>
+			<div class="back-text">
+				<span>P</span>
+				<span>O</span>
+				<span>R</span>
+				<span>T</span>
+				<span>A</span>
+				<span>L</span>
+			</div>
+		</div>
+		<div class="over">
+		<div class="wrapper">
+		<form id="form" action="check_user.php" method="post">
+		<h1>Login</h1>
+		<div class="input-box">
+			<input type="text" placeholder="Username"  required name="username" id="username">
+			<i class='bx bxs-user'></i>
+		</div>
+
+		<div class="input-box">
+			<input type="password" placeholder="password"required name = "password">
+			 <div class="error-wrapper">
+        		<div id="password-error" class="error-message"></div> <!-- Error message for password -->
+    		</div>
+			<i class='bx bxs-lock-alt'></i>
+		</div>
+		
+		<div class="remember-forgot">
+			<label>
+				<input type="Checkbox"> Remember me
+			</label>
+			<a href="forgot.html">Forgot password?</a>
+		</div>
+
+		<button type ="submit"class="btn">Login</button>
+		<div class="register-link">
+			<p>Don't have an account? 
+				<a href="register.html"> Sign up</a>
+			</p>
+		</div>
+
+		<div class="countinue">
+			<a href="MAIN_MENU.html">Countinue without signing up</a>
+		</div>
+		</form>
+		</div>
+
+	</div>
+	</div>
+
+
+<script>
+	let spanTexts = document.getElementsByTagName("span");
+	window.onload = function(){
+
+		for(spanText of spanTexts){
+			spanText.classList.add("active");
+		}
+	}
+</script>
+<script type="text/javascript">
+setTimeout(function() {
+    window.scrollTo({
+        top: 1000,
+        behavior: 'smooth'
+    });
+}, 5000);
+
+
+
+
+document.getElementById("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var form = this;
+    var formData = new FormData(form);
+
+    fetch("check_user.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        if (result === "success") {
+            // Redirect to MAIN_MENU.html or display success message
+            window.location.href = "MAIN_MENU.html";
+        } else {
+            // Display error message under the password input box
+            var passwordError = document.getElementById("password-error");
+            passwordError.textContent = "Incorrect username or password.";
+            adjustMargin();
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+
+function adjustMargin() {
+    var rememberForgot = document.querySelector(".remember-forgot");
+    var errorWrapper = document.querySelector(".error-wrapper");
+    var errorHeight = errorWrapper.offsetHeight;
+    rememberForgot.style.marginTop = errorHeight + "px";
+}
+</script>
+
+
+
+
+</body>
+</html>

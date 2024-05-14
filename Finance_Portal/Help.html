@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Help</title>
+	<link rel="stylesheet" href = "style.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style type="text/css">
+	@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+	.header{
+	font-family: "Quicksand", sans-serif;
+	position:fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 100px;
+	background: transparent;
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+}
+
+.logo{
+	font-size: 32px;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.navbar a{
+	position: relative;
+	font-size: 18px;
+	color: #fff;
+	font-weight: 500;
+	text-decoration: none;
+	margin-left: 40px;
+}
+
+.navbar a::before{
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: #fff;
+	
+}
+
+.navbar a:hover::before{
+	width: 100%;
+}
+.wrapper{
+	width: 500px;
+	height: 760px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .2);
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	color: #fff;
+	text-align: center;
+	margin-top: -100px;   /*position of box with information*/
+	margin-left: 500px;
+	border-radius: 40px;
+	padding: 30px 40px;
+}
+
+.wrapper1{
+	width: 500px;
+	height: 1000px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .2);
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	color: #fff;
+	text-align: center;
+	margin-top: -770px;   /*position of box with information*/
+	margin-left: -650px;
+	border-radius: 40px;
+	padding: 30px 40px;
+}
+
+
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Add some space between labels */
+    text-align: left;
+  }
+
+  input[type="text"] {
+    width: 100%; /* Make the input boxes take full width */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 5px;
+  }
+  input[type="text1"] {
+    width: 100%; /* Make the input boxes take full width */
+    height: 80px;
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 5px;
+  }
+
+  .title{
+  	margin-top: -115px;
+  }
+
+  /* Optional: Style the container */
+  .input-container {
+    width: 300px; /* Adjust the width of the container as needed */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+  .help p {
+      margin-top: 20px; /* Adjust the margin as needed */
+      text-align: left;
+    }
+  .first-paragraph{
+  	font-size: 30px;
+  }
+  .help1 p {
+      margin-top: 20px; /* Adjust the margin as needed */
+      text-align: left;
+    }
+
+  
+</style>
+<header class="header">
+	<a href="#" class="logo">Finance Portal</a>
+
+	<nav class="navbar">
+		<a href="MAIN_MENU.html">Home</a>
+		<a href="About.html">About</a>    <!-- add to code --> 
+		<a href="#">Help</a>
+		<a href="register.html">Sign up</a>
+		<a href="Contact.html">Contact</a>
+	</nav>
+</header>
+
+<body>
+<div id ="error">
+	<div class="hero">
+		<div class="title">
+			<h1>Help</h1>
+
+
+			
+		<div class="over">         <!--TABS descriptions-->        
+		<div class="wrapper">
+		<form id="form" action="check_user.php" method="post">
+		
+			<div class="help">
+      <label for="fname"></label><br>
+      			<p class= "first-paragraph">TABS:</p class= "first-paragraph">
+      			<p class= "second-paragraph">The tabs located at the top of the page are there to help you navigate through the website with ease.
+      			The Home tab directs you to the main page where you may begin working on the calculations of your personal economic account.<br> <br>
+      			The About tab will direct you to a page that will give you a description of the purpose and aim of this website.<br> <br>
+      			The Contact tab directs you to a page that allows you to provide a statement of any problems you come across while using our website, simply provide us with your name, email and the problem you encountered in the input boxes and we will get back to you with a solution as soon as possible! <br> <br>
+      		The Pie and Bar chart are tools that will demonstrate your expenses in a visual representation of your expenses.
+      				<br> <br>
+      				<p class= "first-paragraph">Pie Chart:</p class= "first-paragraph">
+      			The Pie chart will demonstrate the percentage of the amount you spend per monthly category according to your specific Income. 
+      		<p class= "first-paragraph">Bar Graph:</p class= "first-paragraph">
+      	The Bar graph will demonstrate your total annual expenses according to each month</p class= "second-paragraph">
+    </div>
+
+    <div class="over1">         <!--Function Descriptions-->        
+		<div class="wrapper1">
+		<form id="form" action="check_user.php" method="post">
+		
+			<div class="help1">
+      <label for="fname"></label><br>
+      			<p class= "first-paragraph">INPUT FIELDS:</p class= "first-paragraph">
+      			<p class= "second-paragraph">The input fields, located within the month section, are where you may input the amount of money spent according to each category. A few of these input fields will not require user-input as they will display the result of the calculations made accroding to specific categories, these input fields are the "Total Spent", "Gross Annual Income", and "Net Annual Income".
+      			<br><br>
+      			The categories such as "Rent", "Light", "Groceries", "Water", etc. is where you as the user will input the amount of your personal expense in that specific category. If some of the categories does not apply to your monthly expenses, then the input box may be left blank. If you wish to add a category that is not listed, then direct your attention to the button right under the categories that is labeled "Add Custom Input". Once this button is selected, then you will be able label the input and type the amount for that input. Once all the categories that correspond to the user's expense, the amount of each category will be summed up and the summation will be displayed in the "Total Spent" field. <br> <br>
+
+      			The input fields such as "Gross Monthly Income", "Net Monthly Income", and "Other Monthly Income" will be where you input your salary. The "Gross Monthly Income" and "Other Monthly Income" will be where you will input your pay check before the taxes are applied. For the "Net Monthly Income" you will input your salary amount after the taxes are applied. The values for the "Gross Monthly Income" and "Other Monthly Income" will be summed up and the total will be displayed in the "Gross Annual Income" field. The sum of "Net Monthly Income" and "Other Monthly Income" will be displayed in the "Net Annual Income" field. <br> Next to each of the input fields are some check boxes. These check boxes, when selected will copy the value inputted onto the next month. This feature is meant to make inputting values easier for the upcoming months, so if an amount is repetetive in various months, like certain bills, then you may select the check box next to the category and this specific value will be carried on to the upcoming month.</p class= "second-paragraph">
+    </div>
+
+    
+
+		
+
+	</div>               <!--add to code-->
+	
+
+<script>
+	let spanTexts = document.getElementsByTagName("span");
+	window.onload = function(){	
+
+		for(spanText of spanTexts){
+			spanText.classList.add("active");
+		}
+	}
+</script>
+
+
+
+
+
+</body>
+</html>

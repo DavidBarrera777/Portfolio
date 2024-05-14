@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+
+
+.container {
+    width: 90%; /* Use percentage for container width */
+    max-width: 1200px; /* Set a maximum width to avoid excessive stretching on large screens */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Responsive styles using media queries */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 95%; /* Adjust container width for smaller screens */
+    }
+
+    /* Adjust other styles for smaller screens */
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 100%; /* Adjust container width for even smaller screens */
+    }
+
+    /* Adjust other styles for smaller screens */
+}
+
+.hero{
+	width: 100%;
+	height: auto;
+	background: url('images/img3.jpg')no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding-top: 200px;
+	min-height: 1200px;
+}
+.title{
+	margin: auto;
+	width: fit-content;
+	font-family: "Quicksand", sans-serif;
+	text-align: center;
+	color: #fff;
+	position: relative;
+}
+.title h1{
+	font-family: "Quicksand", sans-serif;
+	font-size:70px;
+	font-weight:500;
+	position: relative;
+	z-index: 10;
+}
+
+.back-text{
+	width: max-content;
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-family: 'Poppins', sans-serif;
+}
+
+.back-text span{
+	display: inline-block;
+	font-size: 250px;
+	font-weight: 700;
+	-webkit-text-stroke: 1px rgba(255,255,255,1);
+	-webkit-text-fill-color: transparent;
+	transform:translateY(100px);
+	opacity: 0;
+	transition: transform 1s, opacity 0.5s;
+}
+.back-text span.active{
+	transform:translateY(0px);
+	opacity: 1;
+
+}
+.back-text span:nth-child(1){
+	transition-delay: 0.5s;
+}
+.back-text span:nth-child(2){
+	transition-delay: 1s;
+}
+.back-text span:nth-child(3){
+	transition-delay: 1.5s;
+}
+.back-text span:nth-child(4){
+	transition-delay: 2s;
+}
+.back-text span:nth-child(5){
+	transition-delay: 2.5s;
+}
+.back-text span:nth-child(6){
+	transition-delay: 3s;
+}
+
+.over{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 152vh;
+
+}
+.wrapper{
+	width: 420px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .2);
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	color: #fff;
+	margin-top: 305px;
+	border-radius: 10px;
+	padding: 30px 40px;
+}
+
+.wrapper h1{
+	font-family: "Quicksand", sans-serif;
+	font-size: 36px;
+	text-align: center;
+}
+
+.wrapper .input-box{
+	font-family: "Quicksand", sans-serif;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin: 30px 0;
+}
+
+.input-box input{
+	 font-family: "Quicksand", sans-serif;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+	color: #fff;
+
+}
+
+.input-box i{
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 20px;
+
+}
+
+.wrapper .remember-forgot{
+	font-family: "Quicksand", sans-serif;
+	display: flex;
+	justify-content: space-between;
+	font-size: 14.5px;
+	margin: -15px 0 15px;
+}
+
+.remember-forgot label input{
+	accent-color: #fff;
+	margin-right: 3px;
+}
+
+.remember-forgot a{
+	color: #fff;
+	text-decoration: none;
+}
+
+.remember-forgot a:hover{
+	text-decoration: underline;
+}
+
+.wrapper .btn{
+	 font-family: "Quicksand", sans-serif;
+	width: 100%;
+	height: 45px;
+	background: #fff;
+	border: none;
+	outline: none;
+	border-radius: 40px;
+	bottom-shadow: 0 0 10px rgba(0, 0, 0, .1);
+	cursor: pointer;
+	font-size: 16px;
+	color: #333;
+	font-weight: 600;
+}
+
+.wrapper .register-link{
+	 font-family: "Quicksand", sans-serif;
+	font-size: 14.5px;
+	text-align: center;
+	margin-top: 25px;
+}
+
+.register-link p a{
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+
+}
+
+.register-link p a:hover{
+	text-decoration: underline;
+}
+
+.wrapper .countinue{
+	 font-family: "Quicksand", sans-serif;
+	font-size: 14.5px;
+	text-align: center;
+	margin-top: 10px;
+}
+.countinue a{
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+}
+.countinue a:hover{
+	text-decoration: underline;
+}
+

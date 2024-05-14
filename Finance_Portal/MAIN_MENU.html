@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Finance Portal</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="main_menu.css" />
+  </head>
+
+<style type="text/css">
+.header{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a{
+    position: relative;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: .3s;
+}
+
+.navbar a:hover::before{
+    width: 100%;
+}
+</style>
+
+<header class="header">
+  <a href="HomePage.html" class="logo">Finance Portal</a>
+
+  <nav class="navbar">
+    <a href="MAIN_MENU.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Help.html">Help</a>
+    <a href="register.html">Sign Up</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+  <body>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+
+<div class="calendar-container">
+    <div class="card">
+      <div class="calendar-toolbar">
+        <button class="prev month-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="current-month"></div>
+        <button class="next month-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="calendar">
+    <div class="userinput">    
+    <form id="expenses-form" action="insert_expenses.php" method="post">
+      <label for="Rent">Rent:</label><br>
+      <input type="text" id="Rent" name="rent">
+      <input type="checkbox" name="copyRent" class="copy-checkbox"><br>
+
+      <label for="Light">Light:</label><br>
+      <input type="text" id="Light" name="light">
+      <input type="checkbox" name="copyLight" class="copy-checkbox"><br>
+
+      <label for="Groceries">Groceries:</label><br>
+      <input type="text" id="Groceries" name="groceries">
+      <input type="checkbox" name="copyGroceries" class="copy-checkbox"><br>
+
+      <label for="Water">Water:</label><br>
+      <input type="text" id="Water" name="water">
+      <input type="checkbox" name="copyWater" class="copy-checkbox"><br>
+
+      <label for="Gas">Gas:</label><br>
+      <input type="text" id="Gas" name="gas">
+      <input type="checkbox" name="copyGas" class="copy-checkbox"><br>
+
+      <label for="Internet">Internet:</label><br>
+      <input type="text" id="Internet" name="internet">
+      <input type="checkbox" name="copyInternet" class="copy-checkbox"><br>
+
+      <label for="Phone">Phone:</label><br>
+      <input type="text" id="Phone" name="phone">
+      <input type="checkbox" name="copyPhone" class="copy-checkbox"><br>
+
+      <label for="property">Property Taxes:</label><br>
+      <input type="text" id="property" name="propertyTaxes">
+      <input type="checkbox" name="property" class="copy-checkbox"><br>
+
+      <label for="CreditCards">Credit Cards:</label><br>
+      <input type="text" id="CreditCards" name="creditCards">
+      <input type="checkbox" name="copyCreditCards" class="copy-checkbox"><br>
+
+      <label for="HealthInsurance">Health Insurance:</label><br>
+      <input type="text" id="HealthInsurance" name="healthInsurance">
+      <input type="checkbox" name="copyHealthInsurance" class="copy-checkbox"><br>
+
+      <label for="CarInsurance">Car Insurance:</label><br>
+      <input type="text" id="CarInsurance" name="carInsurance">
+      <input type="checkbox" name="copyCarInsurance" class="copy-checkbox"><br>
+
+      <label for="CarPayments">Car Payments:</label><br>
+      <input type="text" id="CarPayments" name="carPayments">
+      <input type="checkbox" name="copyCarPayments" class="copy-checkbox"><br>
+
+<button type="button" id="submit-btn" onclick="calculate()">Calculate</button>
+    </form>
+
+<div class= "gross">
+  <form>
+      <label for="Gross">Total Spent:</label><br>
+      <input  id="Gross" name="gross"><br>  
+  </form>
+</div>
+
+  </div>
+
+      <div id="custom-inputs">
+        <!-- Existing inputs -->
+    </div>
+
+      </div>
+      <div class="goto-buttons">
+
+
+        <button type="button" class="add-custom-input">Add Custom Input</button>
+
+
+      </div>
+    </div>
+
+
+<div class="pie-chart">
+    <div class="text">
+       <span id="pieYearDisplay"></span>
+    </div>
+    <canvas id="pieChart" width="450" height="450"></canvas>
+</div>
+</div>
+
+<!--
+LARGE TEXT
+-->
+<div class="chart-container">
+<div class="netIncome">
+    <div class="netText" id="netText">
+        <label>$0</label>
+    </div>
+</div>
+
+<div class="netMonthly">
+    <div class="monthText" id="monthText">
+        <label>$0</label>
+    </div>
+</div>
+
+<div class="enterIncome">
+    <div class="enterText">
+        <label for="AnnualIncome">Net Monthly Income:</label><br>
+      <input  id="AnnualIncome" name="annualIncome"><br>
+      <label for="other">Other:</label><br>
+      <input  id="other" name="otherIncome"><br>
+      <button type="button" id="enterButton">Enter</button>
+    </div>
+</div>
+<!--
+LARGE TEXT
+-->
+
+
+<div class="bargraph">
+    <div class="barText">
+        <span id="yearDisplay"></span>
+    </div>
+    <canvas id="barGraph" width="550" height="400"></canvas>
+</div>
+</div>
+  
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
+<script>
+let inputValuesByMonthYear = {};
+let currentMonthValues = {}; // Store the input values of the current month
+let netIncomeByMonth = {}; // Store net income for each month
+
+function calculate() {
+    let total = 0;
+    const inputValues = [];
+    const inputLabels = [];
+
+    const monthYear = document.querySelector(".current-month").textContent;
+
+    // Initialize inputValuesByMonthYear[monthYear] if it doesn't exist
+    if (!inputValuesByMonthYear[monthYear]) {
+        inputValuesByMonthYear[monthYear] = {};
+    }
+
+    // Get all standard input elements with class name 'userinput'
+    const standardInputs = document.querySelectorAll('.userinput input[type="text"]');
+    
+    // Loop through each standard input and sum up their values
+    standardInputs.forEach(input => {
+        const value = parseFloat(input.value) || 0;
+        const label = document.querySelector(`label[for="${input.id}"]`);
+        total += value;
+        const labelText = label.textContent.replace(':', ''); // Extract label text
+        inputValues.push(value);
+        inputLabels.push(labelText);
+        inputValuesByMonthYear[monthYear][input.id] = value; // Update only the current month's values
+    });
+
+    // Get all custom input elements with id 'custom-inputs'
+    const customInputs = document.querySelectorAll('.userinput#custom-inputs input[type="text"]');
+
+    // Loop through each custom input and sum up their values
+    customInputs.forEach(input => {
+        const value = parseFloat(input.value) || 0;
+        const label = document.querySelector(`label[for="${input.id}"]`);
+        const labelText = label.textContent.replace(':', ''); // Extract label text
+        inputValues.push(value);
+        inputLabels.push(labelText);
+        inputValuesByMonthYear[monthYear][input.id] = value; // Update only the current month's values
+    });
+
+    // Display the total in the gross input field
+    document.getElementById("Gross").value = total.toFixed(2);
+
+    // Group input values by month
+    const monthlyData = groupInputValuesByMonth([...standardInputs, ...customInputs]);
+
+    console.log("Monthly Data:", monthlyData); // Log monthly data for debugging
+
+    // Create a pie chart
+    createPieChart(inputValues, inputLabels);
+    
+    // Update or create the bar graph
+    updateOrCreateBarGraph(monthlyData);
+
+    // Get the value entered in the Annual Income input field
+    const annualIncomeValue = parseFloat(annualIncomeInput.value) || 0;
+    // Get the value entered in the Other Income input field
+    const otherIncomeValue = parseFloat(otherIncomeInput.value) || 0;
+    // Get the total spent value
+    const totalSpent = total;
+
+    // Calculate net income by subtracting total spent from total monthly income
+    const netIncome = annualIncomeValue - totalSpent;
+
+    // Format the net income with commas every three digits
+    const formattedNetIncome = netIncome.toLocaleString();
+
+    // Update the content of the monthText element with the formatted value
+    document.getElementById("monthText").innerHTML = `<label>$${formattedNetIncome}</label>`;
+}
+
+
+function updateOrCreateBarGraph(monthlyData) {
+    // Get the canvas element
+    const ctx = document.getElementById('barGraph').getContext('2d');
+
+    // Check if a bar graph already exists
+    if (window.barChart) {
+        // Update the data of the existing bar graph by accumulating the values
+        const currentData = window.barChart.data.datasets[0].data;
+        const newData = Object.values(monthlyData.totalSpentByMonth);
+        for (let i = 0; i < currentData.length; i++) {
+            currentData[i] += newData[i] || 0;
+        }
+        window.barChart.update();
+    } else {
+        // If no bar graph exists, create a new one
+        createBarGraph(monthlyData);
+    }
+}
+
+function createPieChart(data, labels) {
+    // Get the canvas element
+    const ctx = document.getElementById('pieChart').getContext('2d');
+
+    // Destroy the existing chart if it exists
+    if (window.pieChart instanceof Chart) {
+        window.pieChart.destroy();
+    }
+
+    Chart.defaults.color = '#fff';
+
+    // Create the pie chart
+    window.pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels, // Use input labels as segment labels
+            datasets: [{
+                label: 'Expenses', // Removed the hard-coded label
+                data: data,
+                backgroundColor: [
+                    '#FF6384', //(Red)
+                    '#36A2EB', //(Blue)
+                    '#FFCE56', //(Yellow)
+                    '#4BC0C0', //(Cyan)
+                    '#9966FF', //(Purple)
+                    '#FF9F40', //(Orange)
+                    '#2E8B57', //(Sea Green)
+                    '#FFD700', //(Gold)
+                    '#9370DB', //(Medium Purple)
+                    '#32CD32', //(Lime Green)
+                    '#FF7F50', //(Coral)
+                    '#1E90FF', //(Dodger Blue)
+                    '#FF4500', //(Orange Red)
+                    '#8A2BE2' //(Blue Violet)
+                ],
+                borderColor: [
+                    '#FF6384', //(Red)
+                    '#36A2EB', //(Blue)
+                    '#FFCE56', //(Yellow)
+                    '#4BC0C0', //(Cyan)
+                    '#9966FF', //(Purple)
+                    '#FF9F40', //(Orange)
+                    '#2E8B57', //(Sea Green)
+                    '#FFD700', //(Gold)
+                    '#9370DB', //(Medium Purple)
+                    '#32CD32', //(Lime Green)
+                    '#FF7F50', //(Coral)
+                    '#1E90FF', //(Dodger Blue)
+                    '#FF4500', //(Orange Red)
+                    '#8A2BE2' //(Blue Violet)
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            legend: {
+                labels: {
+                    fontColor: '#fff'
+                }
+            }
+        }
+    });
+}
+
+
+function groupInputValuesByMonth(inputs) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const totalSpentByMonth = Object.fromEntries(months.map(month => [month, 0]));
+
+    inputs.forEach(input => {
+        const monthYear = document.querySelector(".current-month").textContent;
+        const month = monthYear.split(" ")[0]; // Extract month from "Month Year" format
+        const value = parseFloat(input.value) || 0;
+        totalSpentByMonth[month] += value;
+    });
+
+    return { totalSpentByMonth };
+}
+
+function createBarGraph(monthlyData) {
+    // Get the canvas element
+    const ctx = document.getElementById('barGraph').getContext('2d');
+
+    // Destroy existing chart if it exists
+    if (window.barChart) {
+        window.barChart.destroy();
+    }
+
+    // Extract labels and data from monthlyData
+    const labels = Object.keys(monthlyData.totalSpentByMonth);
+    const data = Object.values(monthlyData.totalSpentByMonth);
+
+    // Create the bar graph
+    window.barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels, // Use month names as x-axis labels
+            datasets: [{
+                label: 'Expenses', // Label for the dataset
+                data: data,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Background color for bars
+                borderColor: 'rgba(255, 99, 132, 1)', // Border color for bars
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Change the color of the legend text to orange
+                    },
+                    afterFit: function(legend) {
+                        legend.height += 10; // Increase the height of the legend to accommodate the text change
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    stacked: true, // Stack bars for each month
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Convert numeric value (index) to month name
+                            return labels[index];
+                        },
+                        color: 'white' // Change the color of the x-axis text to blue
+                    },
+                    grid: {
+                        color: 'white'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Change the color of the y-axis text to green
+                    },
+                    grid: {
+                        color: 'white' // Change the color of the grid lines to light gray
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+function addCustomInput(labelName) {
+    const container = document.getElementById('custom-inputs');
+    const newIndex = container.children.length + 1;
+
+    const div = document.createElement('div');
+    div.classList.add('userinput');
+    div.innerHTML = `
+        <form>
+            <label for="fname${newIndex}">${labelName}:</label>
+            <input type="text" id="fname${newIndex}" name="fname${newIndex}">
+            <input type="checkbox" name="copyfname${newIndex}" class="copy-checkbox"><br>
+            <button type="button" class="delete-input" onclick="deleteInput(this)">Delete</button>
+        </form>
+    `;
+    container.appendChild(div);
+}
+
+function deleteInput(button) {
+    const inputContainer = button.parentElement.parentElement;
+    inputContainer.remove();
+}
+
+
+document.querySelector('.add-custom-input').addEventListener('click', function() {
+    const labelName = prompt("Enter the label name:");
+    if (labelName !== null && labelName.trim() !== '') {
+        addCustomInput(labelName);
+    } else {
+        alert("Please enter a valid label name.");
+    }
+});
+
+
+// Get references to elements
+const currentMonthElement = document.querySelector(".current-month");
+const yearDisplay = document.getElementById('yearDisplay'); // Updated the variable declaration
+const pieYearDisplay = document.getElementById('pieYearDisplay'); // Added reference for the pie chart
+
+// Set the current month and year when the page loads
+const currentDate = new Date();
+currentMonthElement.textContent = currentDate.toLocaleDateString("en-US", { month: 'long', year: 'numeric' });
+
+// Update the year display when the page loads
+const currentMonthYearText = currentMonthElement.textContent;
+const currentYear = currentMonthYearText.split(" ")[1]; // Extract the year from the displayed month and year text
+yearDisplay.textContent = currentYear; // Set the text content of the year display element
+updatePieYearDisplay();
+
+// Update the year display when changing to the next or previous month for the bar graph
+function updateYearDisplay() {
+    const currentMonthYearText = document.querySelector(".current-month").textContent;
+    const currentYear = currentMonthYearText.split(" ")[1];
+    yearDisplay.textContent = currentYear;
+}
+
+function updatePieYearDisplay() {
+    const currentMonthYearText = document.querySelector(".current-month").textContent;
+    pieYearDisplay.textContent = currentMonthYearText; // Set both month and year
+}
+
+
+document.querySelector('.next').addEventListener('click', function() {
+    const currentMonthYear = document.querySelector(".current-month").textContent;
+    const nextMonthDate = new Date(currentMonthYear + ' 1');
+    nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+    const nextMonthYear = nextMonthDate.toLocaleDateString("en-US", { month: 'long', year: 'numeric' });
+
+    // Get the input values for the current month
+    const currentMonthInputs = document.querySelectorAll('.userinput input[type="text"]');
+
+    // Get the input values for the next month if they exist
+    const nextMonthInputs = inputValuesByMonthYear[nextMonthYear] || {};
+
+    // Loop through each input and copy values based on checkbox state and non-zero value
+    currentMonthInputs.forEach(input => {
+        const inputId = input.id;
+        const currentValue = parseFloat(input.value) || 0;
+
+        // Check if the checkbox element exists and is checked, and if the value is non-zero
+        const checkbox = document.querySelector(`[name="copy${inputId}"]`);
+        if (checkbox && checkbox.checked && currentValue !== 0) {
+            // Copy value from current month to next month
+            nextMonthInputs[inputId] = currentValue;
+        }
+    });
+
+    // Update the input values for the next month
+    inputValuesByMonthYear[nextMonthYear] = nextMonthInputs;
+
+    // Change the displayed month
+    document.querySelector(".current-month").textContent = nextMonthYear;
+    updateInputFields();
+    updateYearDisplay();
+    updatePieYearDisplay();
+});
+
+document.querySelector('.prev').addEventListener('click', function() {
+    const currentMonthYear = document.querySelector(".current-month").textContent;
+    const prevMonthDate = new Date(currentMonthYear + ' 1');
+    prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
+    const prevMonthYear = prevMonthDate.toLocaleDateString("en-US", { month: 'long', year: 'numeric' });
+
+    // Get the input values for the current month
+    const currentMonthInputs = document.querySelectorAll('.userinput input[type="text"]');
+
+    // Get the input values for the previous month if they exist
+    const prevMonthInputs = inputValuesByMonthYear[prevMonthYear] || {};
+
+    // Loop through each input and copy values based on checkbox state and non-zero value
+    currentMonthInputs.forEach(input => {
+        const inputId = input.id;
+        const currentValue = parseFloat(input.value) || 0;
+
+        // Check if the checkbox element exists and is checked, and if the value is non-zero
+        const checkbox = document.querySelector(`[name="copy${inputId}"]`);
+        if (checkbox && checkbox.checked && currentValue !== 0) {
+            // Copy value from current month to previous month
+            prevMonthInputs[inputId] = currentValue;
+        }
+    });
+
+    // Update the input values for the previous month
+    inputValuesByMonthYear[prevMonthYear] = prevMonthInputs;
+
+    // Change the displayed month
+    document.querySelector(".current-month").textContent = prevMonthYear;
+    updateInputFields();
+    const currentMonthYearText = document.querySelector(".current-month").textContent;
+    updateYearDisplay();
+    updatePieYearDisplay();
+
+});
+
+
+function updateInputFields() {
+    const monthYear = document.querySelector(".current-month").textContent;
+    if (!inputValuesByMonthYear.hasOwnProperty(monthYear)) {
+        inputValuesByMonthYear[monthYear] = {};
+    }
+    const inputs = document.querySelectorAll('.userinput input[type="text"]');
+    
+    inputs.forEach(input => {
+        const value = inputValuesByMonthYear[monthYear][input.id] || 0;
+        input.value = value;
+        currentMonthValues[input.id] = value; // Update current month values
+    });
+}
+
+
+//BIG TEXT
+// Get references to elements
+const annualIncomeInput = document.getElementById("AnnualIncome");
+const otherIncomeInput = document.getElementById("other");
+const netText = document.getElementById("netText");
+const enterButton = document.getElementById("enterButton");
+
+
+// Update the "Enter" button event listener to subtract total spent from total monthly income
+enterButton.addEventListener("click", function() {
+    // Get the value entered in the Annual Income input field
+    const annualIncomeValue = parseFloat(annualIncomeInput.value) || 0;
+    // Get the value entered in the Other Income input field
+    const otherIncomeValue = parseFloat(otherIncomeInput.value) || 0;
+    // Get the total spent value
+    
+    // Calculate net income by subtracting total spent from total monthly income
+    const netIncome = (annualIncomeValue * 12) + otherIncomeValue;
+
+    // Format the net income with commas every three digits
+    const formattedNetIncome = netIncome.toLocaleString();
+
+    // Update the content of the netText element with the formatted value
+    netText.innerHTML = `<label>$${formattedNetIncome}</label>`;
+    calculateNetIncome();
+});
+
+
+
+
+// Update the "Net" button event listener
+const netButton = document.getElementById("submit-btn");
+netButton.addEventListener("click", function() {
+    // Get the total spent
+    const totalSpent = getTotalSpent();
+    
+    // Update finances
+    updateFinances(totalSpent);
+});;
+
+let netIncome = 144800;
+
+// Function to update net income and remaining annual income
+function updateFinances(totalSpent) {
+    // Subtract total spent from net income
+
+    netIncome = netIncome - totalSpent;
+
+    // Update the net income display
+    const netIncomeElement = document.querySelector("#netText");
+    netIncomeElement.querySelector('label').textContent = `$${netIncome.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+
+
+    console.log("Net Income:", netIncome);
+}
+
+
+function calculateNetIncome() {
+    // Get the value entered in the Annual Income input field
+    const annualIncomeInput = document.getElementById("AnnualIncome");
+    const annualIncomeValue = parseFloat(annualIncomeInput.value) || 0;
+
+    // Get the value entered in the Other Income input field
+    const otherIncomeInput = document.getElementById("other");
+    const otherIncomeValue = parseFloat(otherIncomeInput.value) || 0;
+
+    console.log("Annual Income:", annualIncomeValue);
+    console.log("Other Income:", otherIncomeValue);
+
+    // Calculate net income by adding up annual and other income
+    const netIncome = (annualIncomeValue * 12) + otherIncomeValue;
+
+    return netIncome;
+}
+
+
+
+
+// Function to calculate total spent
+function getTotalSpent() {
+    let total = 0;
+
+    // Get all standard input elements with class name 'userinput'
+    const standardInputs = document.querySelectorAll('.userinput input[type="text"]');
+    standardInputs.forEach(input => {
+        total += parseFloat(input.value) || 0;
+    });
+
+    // Get all custom input elements with id 'custom-inputs'
+    const customInputs = document.querySelectorAll('.userinput#custom-inputs input[type="text"]');
+    customInputs.forEach(input => {
+        total += parseFloat(input.value) || 0;
+    });
+
+    console.log("Total Spent:", total);
+
+    return total;
+}
+
+</script>
+
+</body>
+</html>
