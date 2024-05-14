@@ -1,0 +1,128 @@
+/*
+A Virtural Memory Simulation
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+#include <math.h>
+
+#define NUM_PROCESSES 10
+#define NUM_PAGES 100
+#define PAGE_SIZE 200
+#define NUM_FRAMES 20
+#define MEMORY_SIZE (NUM_FRAMES * PAGE_SIZE)
+
+char memory[MEMORY_SIZE];
+bool allocated[NUM_FRAMES];
+
+typedef struct {
+   bool valid;
+   int frame;
+} page;
+
+page page_tables[NUM_PROCESSES][NUM_PAGES]; // 2D array representing page tables for each process
+
+void initialize_memory() {
+   for (int i = 0; i < MEMORY_SIZE; i++) {
+       memory[i] = '0'; // Initialize memory with '0'
+   }
+}
+
+void initialize_page_tables() {
+   for (int i = 0; i < NUM_PROCESSES; i++) {
+       for (int j = 0; j < NUM_PAGES; j++) {
+           page_tables[i][j].valid = false; // Initialize all entries to invalid
+           page_tables[i][j].frame = -1; // Initialize frame number to -1
+       }
+   }
+}
+
+void allocate_frame(int index) {
+   if (index >= 0 && index < NUM_FRAMES) {
+       allocated[index] = true;
+   } else {
+       printf("Allocate frame error\n");
+       exit(EXIT_FAILURE);
+   }
+}
+
+int find_free_frame() {
+   for (int i = 0; i < NUM_FRAMES; i++) {
+       if (!allocated[i]) {
+           return i; // Return the index of the first free frame
+       }
+   }
+   return -1; // No free frames available
+}
+
+void reclaim_frame(int index) {
+   if (index >= 0 && index < NUM_FRAMES) {
+       allocated[index] = false;
+   } else {
+       printf("Reclaim frame error\n");
+       exit(EXIT_FAILURE);
+   }
+}
+
+void handle_page_fault(int process_id, int page_number) {
+   int frame_number = find_free_frame();
+   if (frame_number == -1) {
+       printf("No free frames available\n");
+       exit(EXIT_FAILURE);
+   }
+   // Update page table
+   page_tables[process_id][page_number].valid = true;
+   page_tables[process_id][page_number].frame = frame_number;
+   // Update memory (simulate loading page from disk)
+   for (int i = 0; i < PAGE_SIZE; i++) {
+       memory[frame_number * PAGE_SIZE + i] = '1'; // Example: Mark the frame with '1'
+   }
+   // Allocate the frame
+   allocate_frame(frame_number);
+}
+
+void address_translation(int i, int virtual_address) {
+   int page_number = virtual_address / PAGE_SIZE;
+   int offset = virtual_address % PAGE_SIZE;
+   page current_page = page_tables[i][page_number];
+   if (current_page.valid) {
+       int physical_address = current_page.frame * PAGE_SIZE + offset;
+       printf("Process %d: Virtual Address: %d -> Physical Address: %d\n", i, virtual_address, physical_address);
+   } else {
+       printf("Process %d: Page fault occurred for Page %d\n", i, page_number);
+       handle_page_fault(i, page_number);
+       // Retry translation after handling page fault
+       address_translation(i, virtual_address);
+   }
+}
+
+int main() {
+   initialize_memory();
+   initialize_page_tables();
+
+   // Allocate some frames initially (optional)
+   for (int i = 0; i < 2; i++) {
+       allocate_frame(i);
+   }
+
+   int num;
+   printf("Enter an integer for process: ");
+   scanf("%i", &num);
+
+
+   // Example: Simulate memory access with virtual addresses for 10 processes
+
+   for(int j = 0; j < NUM_PROCESSES; j++){
+       int virtual_address = (num+j) % (NUM_PAGES * PAGE_SIZE); // Generate virtual address
+       address_translation(j, virtual_address);
+   }
+   
+   
+    find_free_frame();
+
+
+   return 0;
+}
+
+
